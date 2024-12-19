@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.17.xsd">
+
+	<changeSet id="db.changelog-1.0-entity-setup-01" author="ramu">
+		<dropTable tableName="example_table" />
+	</changeSet>
+	
+	<!-- Create course table -->
+    <changeSet id="db.changelog-1.0-entity-setup-02" author="ram">
+        <createTable tableName="course">
+			<column name="id" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+            <column name="title" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="total_hours" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+ <!-- Changeset to add new columns to the existing course table -->
+    <changeSet id="db.changelog-1.0-entity-setup-03" author="ram">
+        
+        <!-- Adding a new column 'price' -->
+        <addColumn tableName="course">
+            <column name="price" type="DECIMAL(10, 2)"/>
+        </addColumn>
+
+        <!-- Adding a new column 'start_date' -->
+        <addColumn tableName="course">
+            <column name="active" type="Boolean"/>
+        </addColumn>
+
+    </changeSet>
+
+</databaseChangeLog>
